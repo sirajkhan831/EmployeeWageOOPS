@@ -1,57 +1,34 @@
 package com.bridgelabz;
 
 public class EmployeeWageOOPS {
+    public static final int IS_FULL_TIME=2;
+    public static final  int IS_PART_TIME =1;
+    public static final  int EMP_RATE_PER_HOUR =20;
 
-    /*UC1
-     *Checking method
-     */
-    public double empPresentCheck() {
-        double empCheck = Math.floor(Math.random()*10)%3;
-        if(empCheck==0) {
-            System.out.println("Employee Present");
-        }
-        else if(empCheck==2) {
-            System.out.println("Employee is part time");
-        }
-        else {
-            System.out.println("Employee absent");
-        }
-        return empCheck;
-    }
-
-    /*
-     *  full time employee Wage
-      UC2
-      */
-    public void dailyWageEmployee(double check) {
-        int wage=20;
-        int hour=8;
-        if(check==0) {
-            int dailyWage=wage*hour;
-            System.out.println("Daily wage : "+ dailyWage);
-        }
-    }
-
-    /*
-     * UC3
-     * Part time employee wage
-     */
-    public void partTimeEmployeeWage(double check) {
-        int wage=20;
-        int hour=4;
-        if(check==2) {
-            int dailyWage=wage*hour;
-            System.out.println("Daily wage : "+ dailyWage);
-        }
-    }
-
-    //main method
     public static void main(String[] args) {
+        int empCheck =(int) Math.floor(Math.random()*10)%3;
         EmployeeWageOOPS obj=new EmployeeWageOOPS();
-        double check=obj.empPresentCheck();
-        obj.dailyWageEmployee(0);
-        obj.partTimeEmployeeWage(2);
+        obj.wageCalc(empCheck);
+    }
 
+
+    public void wageCalc(int empCheck) {
+        int wage=0;
+        int empHours=0;
+        switch (empCheck) {
+            case IS_FULL_TIME:
+                empHours=8;
+                break;
+
+            case IS_PART_TIME:
+                empHours=4;
+                break;
+
+            default:
+                empHours=0;
+        }
+        wage=empHours*EMP_RATE_PER_HOUR;
+        System.out.println("Emp wage :" +wage);
 
     }
 }
